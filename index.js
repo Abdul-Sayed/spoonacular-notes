@@ -39,7 +39,11 @@ class App extends Component {
     console.log('preparationMinutes: ',recipe.preparationMinutes)
     console.log('cookingMinutes: ', recipe.cookingMinutes)
     console.log('# of ingredients: ', recipe.extendedIngredients.length)
-console.log('servings: ', recipe.servings)
+    console.log('servings: ', recipe.servings)
+    console.log('dish type: ', recipe.dishTypes[0])
+    console.log('instructions: ', recipe.instructions)
+
+
 
     const ingredientData = recipe.extendedIngredients.map(ingr => {
       return (
