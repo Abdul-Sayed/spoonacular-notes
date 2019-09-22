@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const apiKey = '3e8c96b394444c7ae9f0e5f7ac46b5'
+    const apiKey = '3e8cw96b394444c7ae9f0e5f7ac46b5'
     fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar,+cinnamon,+butter,+salt,+baking powder,+milk&number=20&apiKey=${apiKey}`)
     .then(res=>res.json())
     .then(fetchedApiData => {
@@ -42,20 +42,26 @@ class App extends Component {
     console.log('servings: ', recipe.servings)
     console.log('dish type: ', recipe.dishTypes[0])
     console.log('instructions: ', recipe.instructions)
+    console.log('steps: ', recipe.analyzedInstructions[0].steps)
+
 
 
 
     const ingredientData = recipe.extendedIngredients.map(ingr => {
       return (
         <div>
-          <p>ingr.original</p>
+          <p>{ingr.original}</p>
           <img src={`https://spoonacular.com/cdn/ingredients_500x500/${ingr.image}`} alt={ingr.name} height="150" width="200"/>
         </div>
       )
     })
 
-    const instructions = recipe.analyzedInstructions.map(instr => {
-
+    const instructions = recipe.analyzedInstructions[0].steps.map(instr => {
+      return (
+        <div>
+          <p>{instr.number}: {instr.step}</p>
+        </div>
+      )
     })
 
 
@@ -66,6 +72,8 @@ class App extends Component {
     return (
       <React.Fragment>
         {apiDetais}
+        {ingredientData}
+        {instructions}
       </React.Fragment>
     );
   }
